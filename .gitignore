@@ -1,3 +1,13 @@
+# Next.js
+.next/
+out/
+
+# Convex generated
+convex/_generated/
+
+# Env
+.env.local
+
 # Logs
 logs
 *.log

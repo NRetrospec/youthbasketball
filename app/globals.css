@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────────── */
+:root {
+  --court-black:   #080808;
+  --court-surface: #111111;
+  --court-orange:  #FF4500;
+  --court-gold:    #F0B52A;
+  --court-cream:   #EDE8DD;
+  --glow-orange:   0 0 40px rgba(255,69,0,0.5), 0 0 80px rgba(255,69,0,0.25);
+  --glow-gold:     0 0 40px rgba(240,181,42,0.4), 0 0 80px rgba(240,181,42,0.2);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--court-black);
+  color: var(--court-cream);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────────────────── */
+.font-bebas    { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; }
+.font-barlow   { font-family: 'Barlow Condensed', sans-serif; }
+
+/* ─── Noise / Grain ─────────────────────────────────────────────────────────── */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Glow text ─────────────────────────────────────────────────────────────── */
+.text-glow-orange {
+  text-shadow: 0 0 30px rgba(255,69,0,0.7), 0 0 80px rgba(255,69,0,0.4);
+}
+.text-glow-gold {
+  text-shadow: 0 0 30px rgba(240,181,42,0.6), 0 0 80px rgba(240,181,42,0.3);
+}
+
+/* ─── Glass surfaces ─────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(17,17,17,0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.glass-light {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar          { width: 4px; }
+::-webkit-scrollbar-track    { background: var(--court-black); }
+::-webkit-scrollbar-thumb    { background: var(--court-orange); border-radius: 2px; }
+
+/* ─── Selection ─────────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(255, 69, 0, 0.3);
+  color: white;
+}
+
+/* ─── Button base ────────────────────────────────────────────────────────────── */
+.btn-court {
+  @apply relative overflow-hidden rounded-full font-barlow font-semibold tracking-widest uppercase text-sm px-8 py-4 transition-all duration-300;
+}
+.btn-court::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+}
+.btn-court:hover::before { opacity: 1; }
+
+/* ─── Accordion ─────────────────────────────────────────────────────────────── */
+.accordion-content {
+  overflow: hidden;
+}
+
+/* ─── Court decorative line ─────────────────────────────────────────────────── */
+.court-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,69,0,0.4), transparent);
+}

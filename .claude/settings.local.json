@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(identify /c/Users/phres/OneDrive/Desktop/Projects/youthbasketball/basketballframes/frame_0001.jpg)",
+      "Bash(python3 -c \"from PIL import Image; img = Image.open\\('/c/Users/phres/OneDrive/Desktop/Projects/youthbasketball/basketballframes/frame_0001.jpg'\\); print\\(img.size\\)\")",
+      "Bash(mkdir -p /c/Users/phres/OneDrive/Desktop/Projects/youthbasketball/public/assets)",
+      "Bash(cp /c/Users/phres/OneDrive/Desktop/Projects/youthbasketball/basketballframes/*.jpg /c/Users/phres/OneDrive/Desktop/Projects/youthbasketball/public/assets/)",
+      "Bash(ls /c/Users/phres/OneDrive/Desktop/Projects/youthbasketball/public/assets/frame_*.jpg)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(node_modules/.bin/next build:*)",
+      "Bash(node:*)",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "Bash(echo \"Exit: $?\")",
+      "Bash(timeout 10 ./node_modules/.bin/next dev)"
+    ]
+  }
+}

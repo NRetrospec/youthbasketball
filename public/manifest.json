@@ -1,0 +1,9 @@
+{
+  "name": "Youth Basketball",
+  "short_name": "YB",
+  "description": "Empowering young athletes through competitive play and skill development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080808",
+  "theme_color": "#FF4500"
+}
