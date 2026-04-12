@@ -109,3 +109,43 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255,69,0,0.4), transparent);
 }
+
+/* ─── Input / Select fields ─────────────────────────────────────────────────── */
+/* Global definition so every page gets consistent styles without repeating     */
+/* <style jsx global> blocks. The appearance:none fixes native iOS select UI.   */
+.input-court {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: var(--court-cream);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  padding: 0.65rem 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+  /* Remove native styling on iOS/Android so our custom style shows */
+  appearance: none;
+  -webkit-appearance: none;
+}
+.input-court:focus {
+  border-color: rgba(255, 69, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.08);
+}
+.input-court::placeholder {
+  color: rgba(237, 232, 221, 0.25);
+}
+.input-court option {
+  background: #111;
+  color: var(--court-cream);
+}
+/* Tint the date/time picker indicator white so it's visible on dark bg */
+.input-court[type="date"]::-webkit-calendar-picker-indicator,
+.input-court[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.3);
+  cursor: pointer;
+}
+/* Ensure textareas don't resize in ways that break layouts on mobile */
+textarea.input-court {
+  resize: vertical;
+  min-height: 72px;
+}

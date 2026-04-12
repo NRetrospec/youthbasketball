@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 import ConvexClientProvider from '@/components/ConvexClientProvider';
 
@@ -22,9 +23,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   manifest: '/manifest.json',
-  icons: {
-    icon: '/favicon.ico',
-  },
+  icons: { icon: '/favicon.ico' },
 };
 
 export const viewport: Viewport = {
@@ -35,27 +34,29 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'SportsOrganization',
-              name: 'Youth Basketball',
-              sport: 'Basketball',
-              description: 'Empowering young athletes through competitive play and skill development.',
-              url: 'https://youthbasketball.org',
-            }),
-          }}
-        />
-      </head>
-      <body className="bg-court-black text-court-cream antialiased">
-        <ConvexClientProvider>
-          {children}
-        </ConvexClientProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'SportsOrganization',
+                name: 'Youth Basketball',
+                sport: 'Basketball',
+                description: 'Empowering young athletes through competitive play and skill development.',
+                url: 'https://youthbasketball.org',
+              }),
+            }}
+          />
+        </head>
+        <body className="bg-court-black text-court-cream antialiased">
+          <ConvexClientProvider>
+            {children}
+          </ConvexClientProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
