@@ -1,9 +1,16 @@
 {
   "name": "Youth Basketball",
-  "short_name": "YB",
+  "short_name": "YouthBball",
   "description": "Empowering young athletes through competitive play and skill development.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#080808",
-  "theme_color": "#FF4500"
+  "theme_color": "#FF4500",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
 }

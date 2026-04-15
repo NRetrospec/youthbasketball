@@ -1,0 +1,11 @@
+[build]
+  # Deploys Convex functions (needs CONVEX_DEPLOY_KEY env var in Netlify UI)
+  # then builds Next.js — bypasses the local-only "prebuild: convex codegen"
+  command = "npx convex deploy && next build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
