@@ -116,7 +116,6 @@ export default function HooperLayout({ children }: { children: React.ReactNode }
             </Link>
             <UserButton
               appearance={{ variables: { colorPrimary: '#FF4500' } }}
-              afterSignOutUrl="/"
             />
           </div>
         </div>

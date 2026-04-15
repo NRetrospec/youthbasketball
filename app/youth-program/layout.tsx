@@ -114,7 +114,6 @@ export default function YouthProgramLayout({ children }: { children: React.React
             </Link>
             <UserButton
               appearance={{ variables: { colorPrimary: '#FF4500' } }}
-              afterSignOutUrl="/"
             />
           </div>
         </div>

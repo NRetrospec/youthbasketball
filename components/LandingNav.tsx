@@ -32,7 +32,6 @@ export default function LandingNav() {
             </Link>
             <UserButton
               appearance={{ variables: { colorPrimary: '#FF4500' } }}
-              afterSignOutUrl="/"
             />
           </>
         ) : (

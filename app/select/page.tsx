@@ -31,7 +31,6 @@ export default function SelectPage() {
       <div className="fixed top-4 right-4 z-50">
         <UserButton
           appearance={{ variables: { colorPrimary: '#FF4500' } }}
-          afterSignOutUrl="/"
         />
       </div>
 
