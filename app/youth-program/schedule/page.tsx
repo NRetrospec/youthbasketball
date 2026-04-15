@@ -216,8 +216,8 @@ export default function SchedulePage() {
   );
 }
 
-function groupByMonth(entries: { _id: string; date: string; [k: string]: unknown }[]) {
-  const map = new Map<string, typeof entries>();
+function groupByMonth<T extends { date: string }>(entries: T[]) {
+  const map = new Map<string, T[]>();
   entries.forEach(e => {
     const month = new Date(e.date).toLocaleDateString('en', { month: 'long', year: 'numeric' });
     if (!map.has(month)) map.set(month, []);
