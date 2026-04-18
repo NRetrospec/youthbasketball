@@ -15,7 +15,10 @@
       "Bash(./node_modules/.bin/tsc --noEmit)",
       "Bash(echo \"Exit: $?\")",
       "Bash(timeout 10 ./node_modules/.bin/next dev)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(npx convex *)"
     ]
   }
 }

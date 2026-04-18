@@ -152,4 +152,105 @@ export default defineSchema({
   })
     .index('by_team', ['teamId'])
     .index('by_date', ['date']),
+
+  // ── 1v1 Skill-Based Challenges ───────────────────────────────────
+  challenges: defineTable({
+    creatorId:   v.id('users'),
+    creatorName: v.string(),
+    challengerId:   v.optional(v.id('users')),
+    challengerName: v.optional(v.string()),
+    location:  v.string(),
+    date:      v.string(),
+    time:      v.string(),
+    notes:     v.optional(v.string()),
+    // Financials (USD)
+    entryFee:    v.number(),
+    prizeAmount: v.number(),
+    platformFee: v.number(),
+    // Status lifecycle
+    status: v.union(
+      v.literal('pending_payment'),           // creator hasn't paid yet
+      v.literal('open'),                       // creator paid, needs opponent
+      v.literal('awaiting_challenger_payment'),// opponent accepted, needs to pay
+      v.literal('active'),                     // both paid, match ongoing
+      v.literal('pending_result'),             // awaiting score submissions
+      v.literal('completed'),                  // winner determined
+      v.literal('disputed'),                   // score conflict
+      v.literal('cancelled'),
+    ),
+    // Payments
+    creatorPaid:              v.boolean(),
+    challengerPaid:           v.boolean(),
+    creatorStripeSessionId:   v.optional(v.string()),
+    challengerStripeSessionId: v.optional(v.string()),
+    // Score reports (each player reports the full scoreline)
+    creatorScoreReport: v.optional(v.object({
+      creatorPoints:    v.number(),
+      challengerPoints: v.number(),
+    })),
+    challengerScoreReport: v.optional(v.object({
+      creatorPoints:    v.number(),
+      challengerPoints: v.number(),
+    })),
+    creatorScoreSubmitted:    v.boolean(),
+    challengerScoreSubmitted: v.boolean(),
+    winnerId: v.optional(v.id('users')),
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index('by_status',      ['status'])
+    .index('by_creator',     ['creatorId'])
+    .index('by_challenger',  ['challengerId'])
+    .index('by_date',        ['date']),
+
+  // ── User wallets (balance tracking) ─────────────────────────────
+  wallets: defineTable({
+    userId:              v.id('users'),
+    balanceCents:        v.number(),
+    totalEarnedCents:    v.number(),
+    totalWithdrawnCents: v.number(),
+    kycVerified:         v.boolean(),
+    updatedAt:           v.number(),
+  })
+    .index('by_user', ['userId']),
+
+  // ── Transaction ledger ───────────────────────────────────────────
+  transactions: defineTable({
+    userId:          v.id('users'),
+    type:            v.union(
+      v.literal('entry_fee'),
+      v.literal('prize'),
+      v.literal('refund'),
+      v.literal('withdrawal'),
+    ),
+    amountCents:     v.number(),
+    challengeId:     v.optional(v.id('challenges')),
+    stripeSessionId: v.optional(v.string()),
+    status:          v.union(
+      v.literal('pending'),
+      v.literal('completed'),
+      v.literal('failed'),
+    ),
+    description: v.string(),
+    createdAt:   v.number(),
+  })
+    .index('by_user',      ['userId'])
+    .index('by_challenge', ['challengeId']),
+
+  // ── Dispute records ──────────────────────────────────────────────
+  disputes: defineTable({
+    challengeId: v.id('challenges'),
+    raisedBy:    v.id('users'),
+    reason:      v.string(),
+    status:      v.union(
+      v.literal('pending'),
+      v.literal('resolved'),
+      v.literal('rejected'),
+    ),
+    resolution: v.optional(v.string()),
+    resolvedBy: v.optional(v.id('users')),
+    createdAt:  v.number(),
+  })
+    .index('by_challenge', ['challengeId'])
+    .index('by_status',    ['status']),
 });

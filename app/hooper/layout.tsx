@@ -59,6 +59,28 @@ const nav = [
       </svg>
     ),
   },
+  {
+    href:  '/hooper/challenges',
+    label: '1v1',
+    icon:  (
+      <svg viewBox="0 0 20 20" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <circle cx="10" cy="10" r="8" />
+        <path d="M10 2c0 0-3 4-3 8s3 8 3 8" strokeLinecap="round" />
+        <path d="M2 10h16" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    href:  '/hooper/wallet',
+    label: 'Wallet',
+    icon:  (
+      <svg viewBox="0 0 20 20" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <rect x="1" y="5" width="18" height="12" rx="2" />
+        <path d="M1 9h18" strokeLinecap="round" />
+        <circle cx="15" cy="13" r="1.5" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
 ];
 
 export default function HooperLayout({ children }: { children: React.ReactNode }) {
